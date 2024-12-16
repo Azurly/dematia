@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { motion } from "motion/react";
 import { z } from "zod";
@@ -7,9 +7,12 @@ function App() {
   const [text, setText] = useState(""); // État pour le texte de l'entrée
   const [result, setResult] = useState<string | null>(null); // Résultat de l'analyse
   const [loading, setLoading] = useState(false); // État de chargement
-
+  const [isConnected, setIsConnected] = useState(false);
   const schema = z.string();
-
+  
+  useEffect(
+    
+  )
   const getContenu = async () => {
     try {
       // Validation du texte avant envoi
@@ -34,7 +37,6 @@ function App() {
       setLoading(false);
     }
   };
-
   return (
     <main className="p-5 min-w-[250px] h-auto text-center">
       <div>
@@ -57,34 +59,38 @@ function App() {
           }}
         />
       </div>
-      <div className="card">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault(); // Empêche le rechargement de la page
-            getContenu();
-          }}
-        >
-          <input
-            id="prompt"
-            type="text"
-            className="w-full max-w-xs p-2 rounded-lg mb-4"
-            placeholder="Enter text here"
-            value={text}
-            onChange={(e) => setText(e.target.value)} // Liaison avec l'état
-          />
-          <button
-            type="submit"
-            className="p-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
-          >
-            Analyser
-          </button>
-        </form>
-        {loading ? (
-          <p>Analyse en cours...</p>
+      {isConnected ? (
+          <p>Please Sign In</p>
         ) : (
-          result && <p className="mt-4">{result}</p>
-        )}
-      </div>
+          <div className="card">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault(); // Empêche le rechargement de la page
+                getContenu();
+              }}
+            >
+              <input
+                id="prompt"
+                type="text"
+                className="w-full max-w-xs p-2 rounded-lg mb-4"
+                placeholder="Enter text here"
+                value={text}
+                onChange={(e) => setText(e.target.value)} // Liaison avec l'état
+              />
+              <button
+                type="submit"
+                className="p-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+              >
+                Analyser
+              </button>
+            </form>
+            {loading ? (
+              <p>Analyse en cours...</p>
+            ) : (
+              result && <p className="mt-4">{result}</p>
+            )}
+        </div>
+      )}
       <p className="read-the-docs">
         Cliquez sur le logo Demat IA pour lancer une analyse
       </p>
