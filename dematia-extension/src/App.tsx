@@ -16,9 +16,9 @@ function App() {
       }catch(error){
         return error;
       }
-    }
-  auth();
-}, []);
+    };
+    auth();
+  });
   return (
     <>
       <main className='container min-w-[250px] h-auto bg-gray-800 p-3 text-white text-center font-semibold'>
@@ -35,29 +35,29 @@ function App() {
           </button>
         </nav>
       {logged ?
-      ( <>
-          <div className='flex justify-center items-center'>
+      (
+          <section className='col-auto'>            
             <TriangleAlert width={50} height={'auto'}/>
-            <p className='text-xl p-4'>Please Sign In</p>
-          </div>
-          <button className='bg-[#af33f2] p-3 rounded-md'>Sign In</button>
-        </>
+            <p className='text-xl p-5'>Please Sign In</p>
+            <button className='bg-[#af33f2] p-3 rounded-md'>Sign In</button>
+          </section>
       ) : (
-        <section>
-          <div className='p-5 flex justify-center items-center'>
-          <motion.img
-            animate={{scale: 1.2}}
-            transition={{
-              repeat: Infinity, 
-              repeatType: "reverse",
-            }}
-            src='/icon.svg'
-            width={150}
-            height={'auto'}
-            />
-          </div>
-            <p>Welcome, User !</p>
-        </section>
+          <section className='p-5'>
+          <div className='flex justify-center p-4'>
+            <motion.img
+              animate={{scale: 1.2}}
+              transition={{
+                repeat: Infinity, 
+                repeatType: "reverse",
+              }}
+              src='/icon.svg'
+              width={150}
+              height={'auto'}
+              />
+            </div>
+              <p>Welcome, User !</p>
+          </section>
+          
       )}
       </main>
     </>
