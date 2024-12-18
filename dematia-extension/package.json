@@ -10,11 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "lucide-react": "^0.468.0",
+    "motion": "^11.15.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@crxjs/vite-plugin": "^1.0.14",
     "@eslint/js": "^9.15.0",
+    "@types/node": "^22.10.2",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
@@ -27,6 +31,11 @@
     "tailwindcss": "^3.4.17",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.15.0",
-    "vite": "^6.0.1"
-  }
+    "vite": "^6.0.3"
+  },
+  "description": "DematIA extension for analyzing every web-browser.",
+  "main": "eslint.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

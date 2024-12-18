@@ -1,0 +1,12 @@
+{
+    "manifest_version": 3,
+    "name": "DematIA",
+    "version": "1.0.0",
+    "action": {
+        "default_popup": "index.html",
+        "default_icon": "public/icon.png"
+    },
+    "icon": {
+        "128": "public/icon.png"
+    }
+}
