@@ -1,64 +1,33 @@
-import { useEffect, useState } from 'react'
-import { motion } from "motion/react"
-import { Bot, Settings, TriangleAlert, User } from 'lucide-react';
+import { Bot, Settings, User } from 'lucide-react';
+import SignIn from '../components/SignIn';
+import Prompt from '../components/Prompt';
 
 // Color for corresponding : #af33f2
 
 function App() {
-  const [logged, setLogged] = useState(true);
-  
-  useEffect(() => {
-    const auth = async () => {
-      try {
-        const response = await fetch("",{});
-        if (!response.ok) return null;
-        setLogged(true);
-      }catch(error){
-        return error;
-      }
-    };
-    auth();
-  });
+  const condition = true;
+
   return (
     <>
       <main className='container min-w-[250px] h-auto bg-gray-800 p-3 text-white text-center font-semibold'>
         <nav className='flex justify-between'>
           <button>
-            <User/>
+            <User />
           </button>
           <a className='flex items-center gap-1' href='http://dematia.vercel.app' target='_blank'>
-            <Bot className='text-[#af33f2]'/>
+            <Bot className='text-[#af33f2]' />
             <p>DematIA</p>
           </a>
           <button>
-            <Settings/>
+            <Settings />
           </button>
         </nav>
-      {logged ?
-      (
-          <section className='col-auto'>            
-            <TriangleAlert width={50} height={'auto'}/>
-            <p className='text-xl p-5'>Please Sign In</p>
-            <button className='bg-[#af33f2] p-3 rounded-md'>Sign In</button>
-          </section>
-      ) : (
-          <section className='p-5'>
-          <div className='flex justify-center p-4'>
-            <motion.img
-              animate={{scale: 1.2}}
-              transition={{
-                repeat: Infinity, 
-                repeatType: "reverse",
-              }}
-              src='/icon.svg'
-              width={150}
-              height={'auto'}
-              />
-            </div>
-              <p>Welcome, User !</p>
-          </section>
-          
-      )}
+        {condition ? (
+          <SignIn />
+        ) : (
+          <Prompt />
+        )
+        }
       </main>
     </>
   )
