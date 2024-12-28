@@ -4,26 +4,29 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/index.ts"
+    "dev": "nodemon ts-node ./src/index.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@auth/express": "^0.8.4",
-    "@prisma/client": "^6.0.1",
+    "@auth/prisma-adapter": "^2.7.4",
+    "@prisma/client": "^6.1.0",
+    "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "@types/node": "^22.10.2"
+  },
+  "devDependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "ts-node": "^10.9.2"
-  },
-  "devDependencies": {
-    "@types/node": "^22.10.2",
     "install": "^0.13.0",
     "nodemon": "^3.1.9",
     "npm": "^10.9.2",
-    "prisma": "^6.0.1",
+    "prisma": "^6.1.0",
+    "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   },
