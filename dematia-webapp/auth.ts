@@ -17,7 +17,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         try {
           const user = null
           const { email, password } = await signInSchema.parseAsync(credentials)
-          const response = await fetch("", {
+          const response = await fetch("http://localhost:3002/auth/login", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({email, password}),

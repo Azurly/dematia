@@ -10,6 +10,8 @@ const prisma = new PrismaClient();
 export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   try {
+
+    console.log('Bien reçu la requête');
     if (!email || !password) {
       return res.status(400).json({ error: "Email et mot de passe requis." });
     }
