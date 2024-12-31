@@ -10,8 +10,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
       // e.g. domain, username, password, 2FA token, etc.
       credentials: {
-        email: {},
-        password: {},
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+
       },
       authorize: async (credentials) => {
         try {
@@ -43,4 +44,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
     Google
   ],
+  secret: process.env.AUTH_SECRET,
+  callbacks: {
+    async session({ session, token }) {
+      // Si l'ID provient de `token`, convertissez-le en string avant de l'ajouter à `session.user`.
+      session.user = { 
+        ...session.user,
+        id: String(token.id), // Convertit en string pour correspondre au type attendu
+      };
+      return session;
+    },
+    async jwt({ token, user }) {
+      // Si un utilisateur est disponible, ajoutez l'ID à `token`.
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+  },
+
 })
