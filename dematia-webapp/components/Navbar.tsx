@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const Navbar = () => {
   return (
-    <nav className='flex justify-between'>
+    <nav className='flex justify-between p-2'>
         <div className='flex items-center gap-3'>
             <Image src={"/dematia.svg"} height={50} width={50} alt='DematIA icon'/>
             <label className='font-semibold'>DematIA</label>
