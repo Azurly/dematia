@@ -1,43 +1,40 @@
 // src/controllers/authController.ts
-
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   try {
-
-    console.log('Bien reçu la requête');
     if (!email || !password) {
       return res.status(400).json({ error: "Email et mot de passe requis." });
     }
-
+    
     const user = await prisma.user.findUnique({ where: { email } });
-
-    console.log("Utilisateur trouvé:", user);
-
     if (!user) {
-      return res.status(401).json({ error: "Email ou mot de passe incorrect 22." });
+      return res.status(401).json({ error: "Email ou mot de passe incorrect." });
     }
 
     const isValidPassword = await bcrypt.compare(password, user.password);
-    console.log("Mot de passe valide:", isValidPassword);
-
     if (!isValidPassword) {
-      return res.status(401).json({ error: "Email ou mot de passe incorrect 33." });
+      return res.status(401).json({ error: "Email ou mot de passe incorrect." });
     }
 
-    const accessToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, {
-      expiresIn: "1h",
+    const accessToken = jwt.sign(
+      { id: user.id },
+      process.env.JWT_SECRET as string,
+      { expiresIn: "1h" }
+    );
+
+    res.json({
+      id: user.id,
+      email: user.email,
+      accessToken,
+      name: user.name,
     });
-
-    console.log("Token généré:", accessToken);
-
-    res.json({ id: user.id, email: user.email, accessToken, name: user.name });
   } catch (error) {
     console.error("Erreur serveur:", error);
     res.status(500).json({ error: "Erreur serveur." });

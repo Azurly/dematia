@@ -7,7 +7,8 @@ import Install from "@/components/Install";
 import Navbar from "@/components/Navbar";
 import PeopleSay from "@/components/PeopleSay";
 
-export default function Home() {
+export default async function Home() {
+
   return (
     <>
       <Navbar/>
