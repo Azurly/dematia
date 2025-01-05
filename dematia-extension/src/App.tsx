@@ -5,7 +5,7 @@ import Prompt from '../components/Prompt';
 // Color for corresponding : #af33f2
 
 function App() {
-  const condition = true;
+  const condition = false;
 
   return (
     <>
